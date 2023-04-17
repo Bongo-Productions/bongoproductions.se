@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bongo was here</title>
+    <title>Bongo blew me</title>
     <style>
       body {
         background-color: black;
@@ -13,9 +13,43 @@
         margin: 0;
         padding: 0;
       }
+      h1 {
+        font-size: 4rem;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
-    <h1>Bongo was here</h1>
+    <div>
+      <h1 id="countdown"></h1>
+    </div>
+    <script>
+      // Set the date and time of the target countdown
+      const targetDate = new Date("May 27, 2023 20:00:00").getTime();
+
+      // Update the countdown every second
+      const countdown = setInterval(function() {
+        // Get the current date and time
+        const now = new Date().getTime();
+        
+        // Calculate the remaining time until the target date and time
+        const distance = targetDate - now;
+        
+        // Calculate the days, hours, minutes, and seconds remaining
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Update the countdown element with the remaining time
+        document.getElementById("countdown").innerHTML = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        
+        // If the countdown is over, stop the countdown timer
+        if (distance < 0) {
+          clearInterval(countdown);
+          document.getElementById("countdown").innerHTML = "EXPIRED";
+        }
+      }, 1000);
+    </script>
   </body>
 </html>
